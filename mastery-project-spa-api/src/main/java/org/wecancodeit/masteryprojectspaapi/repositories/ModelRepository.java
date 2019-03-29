@@ -1,5 +1,10 @@
 package org.wecancodeit.masteryprojectspaapi.repositories;
 
-public class ModelRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.wecancodeit.masteryprojectspaapi.models.Model;
+
+@Repository
+public interface ModelRepository extends CrudRepository<Model, Long> {
 
 }
