@@ -1,6 +1,7 @@
 import events from './utils/events/event-actions'
 import api from './utils/api/api-actions';
 import Makes from './components/Makes';
+import SingleMake from './components/SingleMake';
 
 main()
 
@@ -8,6 +9,14 @@ function main() {
     api.getRequest('http://localhost:8080/makes', makes => {
         getAppContext().innerHTML = Makes(makes);
     })
+
+    events.on(getAppContext(), 'click', () => {
+      if(event.target.classList.contains('make__img')) {
+          api.getRequest(`http://localhost:8080/makes/${event.target.id}`, make => {
+              getAppContext().innerHTML = SingleMake(make)
+          })
+      }
+  })
 
     events.on(getAppContext(), 'click', () => {
         if (event.target.classList.contains('add-make__submit')) {

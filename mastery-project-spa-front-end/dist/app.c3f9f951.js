@@ -181,10 +181,38 @@ exports.default = Makes;
 
 function Makes(makes) {
   return "\n        <ul class=\"makes\">\n        ".concat(makes.map(function (make) {
-    return "\n                <li class=\"make\">\n                <img id=\"".concat(make.id, "\" class=\"make__img\" src=\"").concat(make.makeImg, "\" alt=\"Manufacturer's Logo\"/>\n                <h2>Manufacturer's Name: ").concat(make.makeName, "</h2>\n                <h3>Country of Origin: ").concat(make.makeCountry, "</h3>\n                </li>\n            ");
+    return "\n                <li class=\"make\">\n                <img id=\"".concat(make.id, "\" class=\"make__img\" src=\"").concat(make.makeImg, "\" alt=\"Manufacturer's Logo\"/>\n                <h2>").concat(make.makeName, "</h2>\n                </li>\n            ");
   }).join(''), "\n        </ul>\n        <section class=\"add-make\">\n            <input type=\"text\" class=\"add-make__make-name\" placeholder=\"Make Name\">\n            <input type=\"text\" class=\"add-make__make-country\" placeholder=\"Country of Origin\">\n            <input type=\"text\" class=\"add-make__make-img\" placeholder=\"Logo URL\">\n            <button class=\"add-make__submit\">Add Make</button>\n        </section>\n    ");
 }
-},{}],"js/app.js":[function(require,module,exports) {
+},{}],"js/components/Types.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Types;
+
+function Types(types) {
+  return "\n        <ul id=\"type\">\n            ".concat(types.map(function (type) {
+    return "\n                    <li class=\"type__list\">\n                        <h3 class=\"typeName\">".concat(type.typeName, "</h3>\n                    </li>\n                ");
+  }).join(''), "\n        </ul>\n        \n        ");
+}
+},{}],"js/components/SingleMake.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = SingleMake;
+
+var _Types = _interopRequireDefault(require("./Types"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SingleMake(make) {
+  return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n\n    <ul>\n        <li class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n    </ul>    \n        ");
+}
+},{"./Types":"js/components/Types.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
@@ -193,6 +221,8 @@ var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
 
 var _Makes = _interopRequireDefault(require("./components/Makes"));
 
+var _SingleMake = _interopRequireDefault(require("./components/SingleMake"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
@@ -200,6 +230,14 @@ main();
 function main() {
   _apiActions.default.getRequest('http://localhost:8080/makes', function (makes) {
     getAppContext().innerHTML = (0, _Makes.default)(makes);
+  });
+
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('make__img')) {
+      _apiActions.default.getRequest("http://localhost:8080/makes/".concat(event.target.id), function (make) {
+        getAppContext().innerHTML = (0, _SingleMake.default)(make);
+      });
+    }
   });
 
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -222,7 +260,7 @@ function main() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -250,7 +288,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -425,5 +463,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
