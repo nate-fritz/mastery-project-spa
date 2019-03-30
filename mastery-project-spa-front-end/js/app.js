@@ -2,6 +2,7 @@ import events from './utils/events/event-actions'
 import api from './utils/api/api-actions';
 import Makes from './components/Makes';
 import SingleMake from './components/SingleMake';
+import SingleType from './components/SingleType';
 
 main()
 
@@ -17,6 +18,14 @@ function main() {
           })
       }
   })
+
+  events.on(getAppContext(), 'click', () => {
+    if(event.target.classList.contains('typeName')) {
+        api.getRequest(`http://localhost:8080/type/${event.target.id}`, type => {
+            getAppContext().innerHTML = SingleType(type)
+        })
+    }
+})
 
     events.on(getAppContext(), 'click', () => {
         if (event.target.classList.contains('add-make__submit')) {

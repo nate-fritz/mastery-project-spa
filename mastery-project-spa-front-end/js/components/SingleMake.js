@@ -14,7 +14,7 @@ export default function SingleMake(make) {
     </ul>
 
     <ul>
-        <li class="make__types">${Types(make.types)}</li>
+        <li id="${type.id}" class="make__types">${Types(make.types)}</li>
     </ul>    
         `;
     }
