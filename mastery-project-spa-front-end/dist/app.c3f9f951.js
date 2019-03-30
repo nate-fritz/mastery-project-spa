@@ -181,7 +181,7 @@ exports.default = Makes;
 
 function Makes(makes) {
   return "\n        <ul class=\"makes\">\n        ".concat(makes.map(function (make) {
-    return "\n                <li class=\"make\">\n                <h2>".concat(make.makeName, "</h2>\n                </li>\n            ");
+    return "\n                <li class=\"make\">\n                <img id=\"".concat(make.id, "\" class=\"make__img\" src=\"").concat(make.makeImg, "\" alt=\"Manufacturer's Logo\"/>\n                <h2>Manufacturer's Name: ").concat(make.makeName, "</h2>\n                <h3>Country of Origin: ").concat(make.makeCountry, "</h3>\n                </li>\n            ");
   }).join(''), "\n        </ul>\n        <section class=\"add-make\">\n            <input type=\"text\" class=\"add-make__make-name\" placeholder=\"Make Name\">\n            <input type=\"text\" class=\"add-make__make-country\" placeholder=\"Country of Origin\">\n            <input type=\"text\" class=\"add-make__make-img\" placeholder=\"Logo URL\">\n            <button class=\"add-make__submit\">Add Make</button>\n        </section>\n    ");
 }
 },{}],"js/app.js":[function(require,module,exports) {
@@ -250,7 +250,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60637" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59078" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

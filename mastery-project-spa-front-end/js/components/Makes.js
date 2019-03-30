@@ -6,7 +6,9 @@ export default function Makes(makes) {
         ${makes.map(make => {
             return `
                 <li class="make">
-                <h2>${make.makeName}</h2>
+                <img id="${make.id}" class="make__img" src="${make.makeImg}" alt="Manufacturer's Logo"/>
+                <h2>Manufacturer's Name: ${make.makeName}</h2>
+                <h3>Country of Origin: ${make.makeCountry}</h3>
                 </li>
             `;
         
