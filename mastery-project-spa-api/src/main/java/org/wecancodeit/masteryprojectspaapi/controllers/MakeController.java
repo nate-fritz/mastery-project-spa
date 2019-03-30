@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.masteryprojectspaapi.models.Make;
 import org.wecancodeit.masteryprojectspaapi.repositories.MakeRepository;
 //import org.wecancodeit.masteryprojectspaapi.repositories.ModelRepository;
-//import org.wecancodeit.masteryprojectspaapi.repositories.TypeRepository;
 
 @RestController
 @CrossOrigin
@@ -35,6 +35,12 @@ public class MakeController {
 	@GetMapping("")
 	public Collection<Make> getMakes() {
 		return (Collection<Make>) makeRepo.findAll();
+	}
+	
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public Make getMake(@PathVariable Long id) {
+		return makeRepo.findById(id).get();
 	}
 	
 	@CrossOrigin
