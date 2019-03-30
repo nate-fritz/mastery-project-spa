@@ -27,7 +27,7 @@ public class Make {
 	
 	public Make() {}
 
-	public Make(Long id, String makeName, String makeCountry, String makeImg, Type ...types) {
+	public Make(String makeName, String makeCountry, String makeImg, Type ...types) {
 		this.makeName = makeName;
 		this.makeCountry = makeCountry;
 		this.makeImg = makeImg;

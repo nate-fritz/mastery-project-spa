@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Type {
@@ -21,7 +23,8 @@ public class Type {
 	private Long id;
 	private String typeName;
 	
-	@ManyToMany
+	@ManyToMany (mappedBy="types")
+	@JsonIgnore
 	private Collection<Make> makes;
 	
 	@OneToMany
@@ -29,7 +32,7 @@ public class Type {
 	
 	public Type() {}
 
-	public Type(Long id, String typeName, Make...makes) {
+	public Type(String typeName, Make...makes) {
 		this.typeName = typeName;
 		this.makes =Arrays.asList(makes);
 		this.models = new ArrayList<Model>();
