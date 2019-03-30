@@ -117,9 +117,112 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/app.js":[function(require,module,exports) {
-document.querySelector('#app').innerHTML = "<h1>Does it work?  Yes it does.</h1>";
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/utils/events/event-actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function on(element, eventType, callback) {
+  element.addEventListener(eventType, function (event) {
+    return callback(event);
+  });
+}
+
+var _default = {
+  on: on
+};
+exports.default = _default;
+},{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function getRequest(location, callback) {
+  fetch(location).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
+
+function postRequest(location, requestBody, callback) {
+  fetch(location, {
+    method: "POST",
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
+
+var _default = {
+  getRequest: getRequest,
+  postRequest: postRequest
+};
+exports.default = _default;
+},{}],"js/components/Makes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Makes;
+
+function Makes(makes) {
+  return "\n        <ul class=\"makes\">\n        ".concat(makes.map(function (make) {
+    return "\n                <li class=\"make\">\n                <h2>".concat(make.makeName, "</h2>\n                </li>\n            ");
+  }).join(''), "\n        </ul>\n        <section class=\"add-make\">\n            <input type=\"text\" class=\"add-make__make-name\" placeholder=\"Make Name\">\n            <input type=\"text\" class=\"add-make__make-country\" placeholder=\"Country of Origin\">\n            <input type=\"text\" class=\"add-make__make-img\" placeholder=\"Logo URL\">\n            <button class=\"add-make__submit\">Add Make</button>\n        </section>\n    ");
+}
+},{}],"js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
+
+var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
+
+var _Makes = _interopRequireDefault(require("./components/Makes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+main();
+
+function main() {
+  _apiActions.default.getRequest('http://localhost:8080/makes', function (makes) {
+    getAppContext().innerHTML = (0, _Makes.default)(makes);
+  });
+
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add-make__submit')) {
+      var makeName = document.querySelector('.add-make__make-name').value;
+      var makeCountry = document.querySelector('.add-make__make-country').value;
+      var makeImg = document.querySelector('.add-make__make-img').value;
+
+      _apiActions.default.postRequest('http://localhost:8080/makes/add', {
+        makeName: makeName,
+        makeCountry: makeCountry,
+        makeImg: makeImg
+      }, function (makes) {
+        return getAppContext().innerHTML = (0, _Makes.default)(makes);
+      });
+    }
+  });
+}
+
+function getAppContext() {
+  return document.querySelector("#app");
+}
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +250,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57711" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60637" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -322,5 +425,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
