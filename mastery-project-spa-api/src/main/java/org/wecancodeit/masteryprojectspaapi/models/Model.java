@@ -28,11 +28,11 @@ public class Model {
 	
 	public Model() {}
 
-	public Model(String modelName, String modelYear, String modelImg, String modelPrice, Make make) {
+	public Model(String modelName, String modelYear,  String modelPrice, String modelImg,  Make make) {
 		this.modelName = modelName;
 		this.modelYear = modelYear;
-		this.modelImg = modelImg;
 		this.modelPrice = modelPrice;
+		this.modelImg = modelImg;
 		this.make = make;
 	}
 
@@ -56,11 +56,15 @@ public class Model {
 		return modelPrice;
 	}
 
+	public void editName(String newName) {
+		this.modelName = newName;
+	}
+	
 	@Override
 	public String toString() {
 		return "Model [modelName=" + modelName + ", modelYear=" + modelYear + ", modelImg=" + modelImg + ", modelPrice="
 				+ modelPrice + "]";
 	}
 	
-	
+
 }

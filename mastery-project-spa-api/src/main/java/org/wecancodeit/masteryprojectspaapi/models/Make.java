@@ -67,6 +67,10 @@ public class Make {
 				+ ", models=" + models + "]";
 	}
 
+	public void addModel(Model model) {
+		models.add(model);		
+	}
+
 
 	
 	

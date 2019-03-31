@@ -47,12 +47,33 @@ public class ModelController {
 		JSONObject json = new JSONObject(body);
 		String modelName = json.getString("modelName");
 		String modelYear = json.getString("modelYear");
-		String modelImg = json.getString("modelImg");
 		String modelPrice = json.getString("modelPrice");
+		String modelImg = json.getString("modelImg");
 		Make make = makeRepo.findByMakeName(json.getString("make"));
 		modelRepo.save(new Model(modelName, modelYear, modelImg, modelPrice, make));
-		
 		return (Collection<Model>) modelRepo.findAll();
 	}
+	
+	@CrossOrigin
+	@PostMapping("/edit/{id}")
+	public Model editModel(@PathVariable Long id, @RequestBody String body) throws JSONException {
+		Model modelToEdit = modelRepo.findById(id).get();
+		JSONObject replaceName = new JSONObject(body);
+		String newName = replaceName.getString("newName");
+		modelToEdit.editName(newName);
+		modelRepo.save(modelToEdit);
+		return modelToEdit;
+	}
+	
+//	@CrossOrigin
+//	@DeleteMapping("/delete/{id}")
+//	public Team deleteComment(@PathVariable Long id) {
+//		Comment commentToDelete = commentRepo.findById(id).get();
+//		Team team = commentToDelete.getTeam();
+//		commentRepo.delete(commentToDelete);
+//		return team;
+//	}
+		
+	
 
 }
