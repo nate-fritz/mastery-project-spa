@@ -1,14 +1,17 @@
 package org.wecancodeit.masteryprojectspaapi.models;
 
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -18,47 +21,56 @@ public class Make {
 	@GeneratedValue
 	private Long id;
 	private String makeName;
-	private String makeCountry;
 	@Lob
 	private String makeImg;
 	
-	@ManyToMany
-	private Collection<Type> types;
+	@ManyToOne
+	@JsonIgnore
+	private Country country;
+	
+	@OneToMany(mappedBy="make")
+	private Collection<Model> models;
 	
 	public Make() {}
 
-	public Make(String makeName, String makeCountry, String makeImg, Type ...types) {
+	public Make(String makeName, String makeImg, Country country) {
+		super();
 		this.makeName = makeName;
-		this.makeCountry = makeCountry;
 		this.makeImg = makeImg;
-		this.types = Arrays.asList(types);
-	}
-
-	public Long getId() {
-		return id;
+		this.models = new ArrayList<Model>();
+		this.country = country;
 	}
 
 	public String getMakeName() {
 		return makeName;
 	}
 
-	public String getMakeCountry() {
-		return makeCountry;
-	}
-
 	public String getMakeImg() {
 		return makeImg;
 	}
 
-	public Collection<Type> getTypes() {
-		return types;
+	public Country getCountry() {
+		return country;
+	}
+
+	public Collection<Model> getModels() {
+		return models;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "Make [makeName=" + makeName + ", makeCountry=" + makeCountry + ", makeImg=" + makeImg + ", types="
-				+ types + "]";
+		return "Make [id=" + id + ", makeName=" + makeName + ", makeImg=" + makeImg + ", country=" + country
+				+ ", models=" + models + "]";
 	}
+
+
+	
+	
+
 
 	
 }

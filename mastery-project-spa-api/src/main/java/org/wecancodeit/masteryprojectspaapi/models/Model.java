@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Model {
 
@@ -14,21 +16,24 @@ public class Model {
 	private Long id;
 	private String modelName;
 	private String modelYear;
+	private String modelPrice;
 	@Lob
 	private String modelImg;
-	private String modelPrice;
+	
 	
 	@ManyToOne
-	private Type type;
+	@JsonIgnore
+	private Make make;
+	
 	
 	public Model() {}
 
-	public Model(String modelName, String modelYear, String modelImg, String modelPrice, Type type) {
+	public Model(String modelName, String modelYear, String modelImg, String modelPrice, Make make) {
 		this.modelName = modelName;
 		this.modelYear = modelYear;
 		this.modelImg = modelImg;
 		this.modelPrice = modelPrice;
-		this.type = type;
+		this.make = make;
 	}
 
 	public Long getId() {
