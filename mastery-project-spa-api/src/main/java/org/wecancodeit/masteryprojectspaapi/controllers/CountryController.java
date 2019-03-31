@@ -43,8 +43,23 @@ public class CountryController {
 	}
 	
 	@CrossOrigin
+	@PostMapping("/{id}")
+	public Country addMakeToCountry(@PathVariable Long id, @RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String makeName = json.getString("makeName");
+		String makeImg = json.getString("makeImg");
+		Country country = countryRepo.findById(id).get();
+		Make makeToAdd = new Make(makeName, makeImg, country);
+		makeRepo.save(makeToAdd);
+		country.addMake(makeToAdd);
+		countryRepo.save(country);
+		return country;
+	}
+	
+	
+	@CrossOrigin
 	@PostMapping("/add")
-	public Collection<Country> addMake(@RequestBody String body) throws JSONException {
+	public Collection<Country> addCountry(@RequestBody String body) throws JSONException {
 		JSONObject json = new JSONObject(body);
 		String name = json.getString("name");		
 		countryRepo.save(new Country(name));

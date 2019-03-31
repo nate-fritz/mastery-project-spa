@@ -12,7 +12,7 @@ export default function Country(country) {
 <section class="add-make">
     <input type="text" class="add-make__name" placeholder="Make Name">
     <input type="text" class="add-make__img" placeholder="Image URL for Logo ">
-    <button class="add-make__submit">Add Make</button>
+    <button class="add-make__submit" id="${country.id}">Add Make</button>
 </section>
     `
 }
