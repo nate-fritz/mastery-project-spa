@@ -21,41 +21,35 @@ import org.wecancodeit.masteryprojectspaapi.repositories.MakeRepository;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/makes")
-public class MakeController {
+@RequestMapping("/countries")
+public class CountryController {
 
-	@Resource
-	MakeRepository makeRepo;
-	
 	@Resource
 	CountryRepository countryRepo;
 	
+	@Resource
+	MakeRepository makeRepo;
+	
 	@CrossOrigin
 	@GetMapping("")
-	public Collection<Make> getMakes() {
-		return (Collection<Make>)makeRepo.findAll();
+	public Collection<Country> getCountries() {
+		return (Collection<Country>) countryRepo.findAll();
+	}
+
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public Country viewSingleCountry(@PathVariable Long id) {
+		return countryRepo.findById(id).get();
 	}
 	
 	@CrossOrigin
-	@GetMapping("/{id}")
-	public Make viewSingleMake(@PathVariable Long id) {
-		return makeRepo.findById(id).get();
+	@PostMapping("/add")
+	public Collection<Country> addMake(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String name = json.getString("name");		
+		countryRepo.save(new Country(name));
+		
+		return (Collection<Country>) countryRepo.findAll();
 	}
 
-//	@CrossOrigin
-//	@PostMapping("/add")
-//	public Country addMake(@PathVariable Long id, @RequestBody String body) throws JSONException {
-//		JSONObject json = new JSONObject(body);
-//		String makeName = json.getString("makeName");
-//		String makeImg = json.getString("makeImg");
-//		Country country = countryRepo.findById(id).get();
-//		Make makeToAdd = new Make(makeName, makeImg, country);
-//		makeRepo.save(makeToAdd);
-//		country.addMake(makeToAdd);
-//		countryRepo.save(country);
-//		return country;
-//	}
 }
-	
-
-
