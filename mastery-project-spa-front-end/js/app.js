@@ -45,6 +45,3 @@ function main() {
     function getAppContext() {
         return document.querySelector("#app")
     }
-
-
-

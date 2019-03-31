@@ -12,7 +12,6 @@ export default function SingleMake(make) {
             </div> 
         </li>
     </ul>
-
     <ul>
         <li id="${type.id}" class="make__types">${Types(make.types)}</li>
     </ul>    

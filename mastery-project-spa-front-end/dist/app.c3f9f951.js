@@ -210,7 +210,7 @@ var _Types = _interopRequireDefault(require("./Types"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function SingleMake(make) {
-  return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n\n    <ul>\n        <li class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n    </ul>    \n        ");
+  return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n    <ul>\n        <li id=\"").concat(type.id, "\" class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n    </ul>    \n        ");
 }
 },{"./Types":"js/components/Types.js"}],"js/components/Models.js":[function(require,module,exports) {
 "use strict";
@@ -238,7 +238,7 @@ var _Models = _interopRequireDefault(require("./Models"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function SingleType(type) {
-  return "\n    <ul class=\"singleType__list\">\n        <li>\n            <div class=\"singleType__container\">\n                <h2 class=\"singleType__name\">".concat(type.albumName, "</h2>\n            </div> \n        </li>   \n    </ul>\n\n            <li id=\"").concat(type.id, "\" class=\"singleType__models\">").concat((0, _Models.default)(type.models), "</li>\n        ");
+  return "\n    <ul class=\"singleType__list\">\n        <li>\n            <div class=\"singleType__container\">\n                <h2 class=\"singleType__name\">".concat(type.typeName, "</h2>\n            </div> \n        </li>   \n    </ul>\n\n            <li id=\"").concat(type.id, "\" class=\"singleType__models\">").concat((0, _Models.default)(type.models), "</li>\n        ");
 }
 },{"./Models":"js/components/Models.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -298,9 +298,7 @@ function main() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-
-},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -328,10 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54640" + '/');
- new WebSocket(protocol + '://' + hostname + ':' + "55667" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56381" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -507,3 +502,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+//# sourceMappingURL=/app.c3f9f951.js.map
