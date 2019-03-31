@@ -4,7 +4,7 @@ export default function Types(types) {
             ${types.map(type => {
         return `
                     <li class="type__list">
-                        <h3 class="typeName">${type.typeName}</h3>
+                        <h3 id="${type.id}" class="typeName">${type.typeName}</h3>
                     </li>
                 `;
     }).join('')}

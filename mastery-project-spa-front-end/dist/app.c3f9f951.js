@@ -194,7 +194,7 @@ exports.default = Types;
 
 function Types(types) {
   return "\n        <ul id=\"type\">\n            ".concat(types.map(function (type) {
-    return "\n                    <li class=\"type__list\">\n                        <h3 class=\"typeName\">".concat(type.typeName, "</h3>\n                    </li>\n                ");
+    return "\n                    <li class=\"type__list\">\n                        <h3 id=\"".concat(type.id, "\" class=\"typeName\">").concat(type.typeName, "</h3>\n                    </li>\n                ");
   }).join(''), "\n        </ul>\n        \n        ");
 }
 },{}],"js/components/SingleMake.js":[function(require,module,exports) {
@@ -210,7 +210,7 @@ var _Types = _interopRequireDefault(require("./Types"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function SingleMake(make) {
-  return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n    <ul>\n        <li id=\"").concat(type.id, "\" class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n    </ul>    \n        ");
+  return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n  \n        <li class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n\n        ");
 }
 },{"./Types":"js/components/Types.js"}],"js/components/Models.js":[function(require,module,exports) {
 "use strict";
@@ -298,7 +298,7 @@ function main() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -326,7 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56381" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60411" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -501,5 +501,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map

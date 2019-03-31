@@ -38,7 +38,7 @@ public class Initializer implements CommandLineRunner {
 		Make chevy = makeRepo.save(new Make("Chevrolet", "USA", "https://seeklogo.net/wp-content/uploads/2013/01/chevrolet-auto-logo-vector-400x400.png", truck, sedan));
 		Make dodge = makeRepo.save(new Make("Dodge", "USA", "https://seeklogo.net/wp-content/uploads/2013/01/dodge-transport-logo-vector.png", truck));
 		Make kia = makeRepo.save(new Make("Kia", "South Korea", "https://seeklogo.net/wp-content/uploads/2011/05/kia-motors-logo-vector.png", sedan));
-		Make jeep = makeRepo.save(new Make("Jeep", "USA", "https://www.gfxmag.com/wp-content/uploads/2016/07/jeep-vector-logo.png", truck, suv));
+		Make jeep = makeRepo.save(new Make("Jeep", "USA", "https://i.pinimg.com/originals/95/68/45/9568451d05ba6ad8940b3503a149c649.jpg", truck, suv));
 		Make volkswagen = makeRepo.save(new Make("Volkswagen", "Germany", "https://seeklogo.net/wp-content/uploads/2011/08/volkswagen-logo-vector.png", sedan, coupe, suv));
 		Make ferrari = makeRepo.save(new Make("Ferrari", "Italy", "http://freevectorlogo.net/wp-content/uploads/2014/10/Ferrari-logo-vector-400x400.png", coupe));
 		Make toyota = makeRepo.save(new Make("Toyota", "Japan", "https://seeklogo.net/wp-content/uploads/2013/05/toyota-3d-vector-logo.png", coupe, sedan, truck, suv, hatchback));
