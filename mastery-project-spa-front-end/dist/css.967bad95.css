@@ -113,6 +113,7 @@ nav>.button:hover {
     margin-bottom: 130px;
     padding-right: 30px;
     padding-left: 30px;
+    padding-top: 150px;
 }
 .single-make__img {
     border: 1px solid #869aba;
@@ -145,6 +146,32 @@ nav>.button:hover {
 }
 
 /* Makes Stops */
+
+/* Models Starts */
+.flex-list {
+    border: 1px solid black;
+}
+
+.add-model {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.add {
+    font-size: 15px;
+    padding: 10px;
+    width: 17%;
+}
+
+.add-model__submit {
+    font-size: 15px;
+    padding: 10px;
+    width: 10%;
+}
+/* Models Stops */
 
 
 
