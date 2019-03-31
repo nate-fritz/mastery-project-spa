@@ -58,6 +58,10 @@ public class Type {
 	public String toString() {
 		return "Type [typeName=" + typeName + "]";
 	}
+
+	public void addModel(Model model) {
+		models.add(model);
+	}
 	
 	
 	

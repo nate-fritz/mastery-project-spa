@@ -1,6 +1,8 @@
 import events from './utils/events/event-actions'
 import api from './utils/api/api-actions';
 import Makes from './components/Makes';
+import Models from './components/Models';
+import Types from './components/Types';
 import SingleMake from './components/SingleMake';
 import SingleType from './components/SingleType';
 
@@ -27,6 +29,7 @@ function main() {
     }
 })
 
+    // Add a Make //
     events.on(getAppContext(), 'click', () => {
         if (event.target.classList.contains('add-make__submit')) {
           const makeName = document.querySelector('.add-make__make-name').value
@@ -41,6 +44,27 @@ function main() {
         }
       })
     }
+
+    // Add a Model //
+    events.on(getAppContext(), 'click', () => {
+        if (event.target.classList.contains('add-model__submit')) {
+            const modelName = document.querySelector('.add-model__model-name').value
+            const modelYear = document.querySelector('.add-model__model-year').value
+            const modelPrice = document.querySelector('.add-model__model-price').value
+            const modelImg = document.querySelector('.add-model__model-img').value
+            const type = document.querySelector('.add-model__type').value
+            
+            api.postRequest(`http://localhost:8080/models/add`, {
+                modelName: modelName,
+                modelYear: modelYear,
+                modelPrice: modelPrice,
+                modelImg: modelImg,
+                type: type
+            }, (type) => getAppContext().innerHTML = SingleType(type))
+            
+        }
+        
+    })
 
     function getAppContext() {
         return document.querySelector("#app")

@@ -184,6 +184,19 @@ function Makes(makes) {
     return "\n                <li class=\"make\">\n                <img id=\"".concat(make.id, "\" class=\"make__img\" src=\"").concat(make.makeImg, "\" alt=\"Manufacturer's Logo\"/>\n                <h2>").concat(make.makeName, "</h2>\n                </li>\n            ");
   }).join(''), "\n        </ul>\n        <section class=\"add-make\">\n            <input type=\"text\" class=\"add-make__make-name\" placeholder=\"Make Name\">\n            <input type=\"text\" class=\"add-make__make-country\" placeholder=\"Country of Origin\">\n            <input type=\"text\" class=\"add-make__make-img\" placeholder=\"Logo URL\">\n            <button class=\"add-make__submit\">Add Make</button>\n        </section>\n    ");
 }
+},{}],"js/components/Models.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Models;
+
+function Models(models) {
+  return "\n    <ul class=\"models__list\">   \n  ".concat(models.map(function (model) {
+    return "\n      <li>\n        <div class=\"model_container\">\n            <h2 class=\"model__name\" id=\"".concat(model.id, "\">").concat(model.modelName, "</h2>\n        </div>\n      </li>\n    ");
+  }).join(''), "\n    </ul>\n");
+}
 },{}],"js/components/Types.js":[function(require,module,exports) {
 "use strict";
 
@@ -212,20 +225,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function SingleMake(make) {
   return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n  \n        <li class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n\n        ");
 }
-},{"./Types":"js/components/Types.js"}],"js/components/Models.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Models;
-
-function Models(models) {
-  return "\n    <ul class=\"models__list\">   \n  ".concat(models.map(function (model) {
-    return "\n      <li>\n        <div class=\"model_container\">\n            <h2 class=\"model__name\" id=\"".concat(model.id, "\">").concat(model.modelName, "</h2>\n        </div>\n      </li>\n    ");
-  }).join(''), "\n    </ul>\n");
-}
-},{}],"js/components/SingleType.js":[function(require,module,exports) {
+},{"./Types":"js/components/Types.js"}],"js/components/SingleType.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -238,7 +238,7 @@ var _Models = _interopRequireDefault(require("./Models"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function SingleType(type) {
-  return "\n    <ul class=\"singleType__list\">\n        <li>\n            <div class=\"singleType__container\">\n                <h2 class=\"singleType__name\">".concat(type.typeName, "</h2>\n            </div> \n        </li>   \n    </ul>\n\n            <li id=\"").concat(type.id, "\" class=\"singleType__models\">").concat((0, _Models.default)(type.models), "</li>\n        ");
+  return "\n    <ul class=\"singleType__list\">\n        <li>\n            <div class=\"singleType__container\">\n                <h2 class=\"singleType__name\">".concat(type.typeName, "</h2>\n            </div> \n        </li>   \n    </ul>\n\n            <li class=\"singleType__models\">").concat((0, _Models.default)(type.models), "</li>\n\n\n\n        <section class=\"add-model\">\n            <input type=\"text\" class=\"add-model__model-name\" placeholder=\"Model Name\">\n            <input type=\"text\" class=\"add-model__model-year\" placeholder=\"Model Year\">\n            <input type=\"text\" class=\"add-model__model-price\" placeholder=\"Model Price\">\n            <input type=\"text\" class=\"add-model__model-img\" placeholder=\"URL for image\">\n            <input type=\"text\" class=\"add-model__type\" placeholder=\"Type\">\n            <button class=\"add-model__submit\" id=\"").concat(type.id, "\">Add Model</button>\n        </section>\n    \n        ");
 }
 },{"./Models":"js/components/Models.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -248,6 +248,10 @@ var _eventActions = _interopRequireDefault(require("./utils/events/event-actions
 var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
 
 var _Makes = _interopRequireDefault(require("./components/Makes"));
+
+var _Models = _interopRequireDefault(require("./components/Models"));
+
+var _Types = _interopRequireDefault(require("./components/Types"));
 
 var _SingleMake = _interopRequireDefault(require("./components/SingleMake"));
 
@@ -276,7 +280,8 @@ function main() {
         getAppContext().innerHTML = (0, _SingleType.default)(type);
       });
     }
-  });
+  }); // Add a Make //
+
 
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('add-make__submit')) {
@@ -293,12 +298,33 @@ function main() {
       });
     }
   });
-}
+} // Add a Model //
+
+
+_eventActions.default.on(getAppContext(), 'click', function () {
+  if (event.target.classList.contains('add-model__submit')) {
+    var modelName = document.querySelector('.add-model__model-name').value;
+    var modelYear = document.querySelector('.add-model__model-year').value;
+    var modelPrice = document.querySelector('.add-model__model-price').value;
+    var modelImg = document.querySelector('.add-model__model-img').value;
+    var type = document.querySelector('.add-model__type').value;
+
+    _apiActions.default.postRequest("http://localhost:8080/models/add", {
+      modelName: modelName,
+      modelYear: modelYear,
+      modelPrice: modelPrice,
+      modelImg: modelImg,
+      type: type
+    }, function (type) {
+      return getAppContext().innerHTML = (0, _SingleType.default)(type);
+    });
+  }
+});
 
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/Models":"js/components/Models.js","./components/Types":"js/components/Types.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -326,7 +352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60411" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64794" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

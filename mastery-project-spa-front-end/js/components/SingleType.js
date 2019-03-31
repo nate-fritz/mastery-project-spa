@@ -10,6 +10,18 @@ export default function SingleType(type) {
         </li>   
     </ul>
 
-            <li id="${type.id}" class="singleType__models">${Models(type.models)}</li>
+            <li class="singleType__models">${Models(type.models)}</li>
+
+
+
+        <section class="add-model">
+            <input type="text" class="add-model__model-name" placeholder="Model Name">
+            <input type="text" class="add-model__model-year" placeholder="Model Year">
+            <input type="text" class="add-model__model-price" placeholder="Model Price">
+            <input type="text" class="add-model__model-img" placeholder="URL for image">
+            <input type="text" class="add-model__type" placeholder="Type">
+            <button class="add-model__submit" id="${type.id}">Add Model</button>
+        </section>
+    
         `;
     }
