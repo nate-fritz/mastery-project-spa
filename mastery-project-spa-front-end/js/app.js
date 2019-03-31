@@ -34,6 +34,8 @@ function main() {
   addCountry()
   addMake()
   addModel()
+  removeModel()
+  editModel()
 }
 
 function viewAllCountries() {
@@ -141,6 +143,27 @@ function addCountry() {
     })
   }
 
+  function editModel() {
+    events.on(getAppContext(), 'click', () => {
+      if(event.target.classList.contains('edit__model--submit')) {
+        const newName = event.target.parentElement.querySelector('.edit__model--content').value
+  
+        api.postRequest(`http://localhost:8080/models/edit/${event.target.id}`, {
+          newName: newName,
+        }, (model) => getAppContext().innerHTML = Model(model))
+      }
+    })
+  }
+  
+  function removeModel() {
+    events.on(getAppContext(), 'click', () => {
+          if(event.target.classList.contains('delete__model')) {
+        api.deleteRequest(`http://localhost:8080/models/delete/${event.target.id}`, make => {
+                  getAppContext().innerHTML = Make(make)
+        })
+      }
+    })
+  }
 
 function getHeaderContext() {
   return document.querySelector("#header")

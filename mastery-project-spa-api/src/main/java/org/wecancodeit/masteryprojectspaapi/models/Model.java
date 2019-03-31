@@ -59,12 +59,17 @@ public class Model {
 	public void editName(String newName) {
 		this.modelName = newName;
 	}
-	
+
+	public Make getMake() {
+		return make;
+	}
+
 	@Override
 	public String toString() {
-		return "Model [modelName=" + modelName + ", modelYear=" + modelYear + ", modelImg=" + modelImg + ", modelPrice="
-				+ modelPrice + "]";
+		return "Model [id=" + id + ", modelName=" + modelName + ", modelYear=" + modelYear + ", modelPrice="
+				+ modelPrice + ", modelImg=" + modelImg + ", make=" + make + "]";
 	}
 	
+
 
 }

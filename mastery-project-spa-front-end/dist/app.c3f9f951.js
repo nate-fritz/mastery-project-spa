@@ -210,7 +210,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Model;
 
 function Model(model) {
-  return "\n    <h2 class=\"single-model__name\">".concat(model.modelName, "</h2>\n    <h4 class=\"single-model__year\">").concat(model.modelYear, "</h4>\n    <h4 class=\"single-model__price\">").concat(model.modelPrice, "</h4>\n    <img class=\"single-model__img\" src=\"").concat(model.modelImg, "\" alt=\"Picture of this model\">\n\n    <section class=\"edit__model\">\n    <h3>Edit this Model</h3>\n    <input type=\"text\" class=\"edit__model--content\" placeholder=\"").concat(model.modelName, "\">\n    <button class=\"edit__model--submit\" id=\"").concat(model.id, "\">Replace Model</button>\n</section> \n\n<section class=\"delete__model\">\n    <button class=\"delete__model--comment\" id=\"").concat(model.id, "\">Delete Model</button>\n</section>\n\n    ");
+  return "\n    <h2 class=\"single-model__name\">".concat(model.modelName, "</h2>\n    <h4 class=\"single-model__year\">Year: ").concat(model.modelYear, "</h4>\n    <h4 class=\"single-model__price\">MSRP: ").concat(model.modelPrice, "</h4>\n    <img class=\"single-model__img\" src=\"").concat(model.modelImg, "\" alt=\"Picture of this model\">\n\n    <section class=\"edit__model\">\n        <h3>Edit this Model</h3>\n        <input type=\"text\" class=\"edit__model--content\" placeholder=\"").concat(model.modelName, "\">\n        <button class=\"edit__model--submit\" id=\"").concat(model.id, "\">Replace Model</button>\n    </section> \n\n    <section class=\"delete__model\">\n        <button class=\"delete__model\" id=\"").concat(model.id, "\">Delete Model</button>\n    </section>\n\n    ");
 }
 },{}],"js/utils/events/event-actions.js":[function(require,module,exports) {
 "use strict";
@@ -323,6 +323,8 @@ function main() {
   addCountry();
   addMake();
   addModel();
+  removeModel();
+  editModel();
 }
 
 function viewAllCountries() {
@@ -436,6 +438,30 @@ function addModel() {
   });
 }
 
+function editModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('edit__model--submit')) {
+      var newName = event.target.parentElement.querySelector('.edit__model--content').value;
+
+      _apiActions.default.postRequest("http://localhost:8080/models/edit/".concat(event.target.id), {
+        newName: newName
+      }, function (model) {
+        return getAppContext().innerHTML = (0, _Model.default)(model);
+      });
+    }
+  });
+}
+
+function removeModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('delete__model')) {
+      _apiActions.default.deleteRequest("http://localhost:8080/models/delete/".concat(event.target.id), function (make) {
+        getAppContext().innerHTML = (0, _Make.default)(make);
+      });
+    }
+  });
+}
+
 function getHeaderContext() {
   return document.querySelector("#header");
 }
@@ -471,7 +497,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64354" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56627" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

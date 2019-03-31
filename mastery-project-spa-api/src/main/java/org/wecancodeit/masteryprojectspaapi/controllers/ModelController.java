@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,14 +66,14 @@ public class ModelController {
 		return modelToEdit;
 	}
 	
-//	@CrossOrigin
-//	@DeleteMapping("/delete/{id}")
-//	public Team deleteComment(@PathVariable Long id) {
-//		Comment commentToDelete = commentRepo.findById(id).get();
-//		Team team = commentToDelete.getTeam();
-//		commentRepo.delete(commentToDelete);
-//		return team;
-//	}
+	@CrossOrigin
+	@DeleteMapping("/delete/{id}")
+	public Make deleteModel(@PathVariable Long id) {
+		Model modelToDelete = modelRepo.findById(id).get();
+		Make make = modelToDelete.getMake();
+		modelRepo.delete(modelToDelete);
+		return make;
+	}
 		
 	
 
