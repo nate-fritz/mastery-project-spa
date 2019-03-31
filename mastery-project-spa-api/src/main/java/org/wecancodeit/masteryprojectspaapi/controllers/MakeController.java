@@ -43,19 +43,17 @@ public class MakeController {
 	}
 	
 
-//	@CrossOrigin
-//	@PostMapping("/add")
-//	public Country addMake(@PathVariable Long id, @RequestBody String body) throws JSONException {
-//		JSONObject json = new JSONObject(body);
-//		String makeName = json.getString("makeName");
-//		String makeImg = json.getString("makeImg");
-//		Country country = countryRepo.findById(id).get();
-//		Make makeToAdd = new Make(makeName, makeImg, country);
-//		makeRepo.save(makeToAdd);
-//		country.addMake(makeToAdd);
-//		countryRepo.save(country);
-//		return country;
-//	}
+	
+	@CrossOrigin
+	@PostMapping("/add")
+	public Collection<Country> addMakeToCountry(@PathVariable Long id, @RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String makeName = json.getString("makeName");
+		String makeImg = json.getString("makeImg");
+		Country country = countryRepo.findByName(json.getString("country"));
+		makeRepo.save(new Make(makeName, makeImg, country));
+		return (Collection<Country>) countryRepo.findAll();
+	}
 }
 	
 

@@ -115,7 +115,7 @@ function addCountry() {
         const makeName = event.target.parentElement.querySelector('.add-make__name').value
         const makeImg = event.target.parentElement.querySelector('.add-make__img').value
   
-        api.postRequest('http://localhost:8080/makes/add', {
+        api.postRequest(`http://localhost:8080/countries/${event.target.id}`, {
             makeName: makeName,
             makeImg: makeImg
         }, (country) => getAppContext().innerHTML = Country(country))
