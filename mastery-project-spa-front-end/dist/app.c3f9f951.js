@@ -212,7 +212,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function SingleMake(make) {
   return "\n    <ul class=\"make__list\">\n        <li>\n            <div class=\"make__container\">\n                <img id=\"".concat(make.id, "\" class=\"make__img2\" src=\"").concat(make.makeImg, "\" alt=\"Make Image\"/>\n                <h4 class=\"make__name\">").concat(make.makeName, "</h4>\n                <h5 class=\"make__country\">").concat(make.makeCountry, "</h5>\n            </div> \n        </li>\n    </ul>\n\n    <ul>\n        <li class=\"make__types\">").concat((0, _Types.default)(make.types), "</li>\n    </ul>    \n        ");
 }
-},{"./Types":"js/components/Types.js"}],"js/app.js":[function(require,module,exports) {
+},{"./Types":"js/components/Types.js"}],"js/components/Models.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Models;
+
+function Models(models) {
+  return "\n    <ul class=\"models__list\">   \n  ".concat(models.map(function (model) {
+    return "\n      <li>\n        <div class=\"model_container\">\n            <h2 class=\"model__name\" id=\"".concat(model.id, "\">").concat(model.modelName, "</h2>\n        </div>\n      </li>\n    ");
+  }).join(''), "\n    </ul>\n");
+}
+},{}],"js/components/SingleType.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = SingleType;
+
+var _Models = _interopRequireDefault(require("./Models"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SingleType(type) {
+  return "\n    <ul class=\"singleType__list\">\n        <li>\n            <div class=\"singleType__container\">\n                <h2 class=\"singleType__name\">".concat(type.albumName, "</h2>\n            </div> \n        </li>   \n    </ul>\n\n            <li id=\"").concat(type.id, "\" class=\"singleType__models\">").concat((0, _Models.default)(type.models), "</li>\n        ");
+}
+},{"./Models":"js/components/Models.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
@@ -222,6 +250,8 @@ var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
 var _Makes = _interopRequireDefault(require("./components/Makes"));
 
 var _SingleMake = _interopRequireDefault(require("./components/SingleMake"));
+
+var _SingleType = _interopRequireDefault(require("./components/SingleType"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -236,6 +266,14 @@ function main() {
     if (event.target.classList.contains('make__img')) {
       _apiActions.default.getRequest("http://localhost:8080/makes/".concat(event.target.id), function (make) {
         getAppContext().innerHTML = (0, _SingleMake.default)(make);
+      });
+    }
+  });
+
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('typeName')) {
+      _apiActions.default.getRequest("http://localhost:8080/type/".concat(event.target.id), function (type) {
+        getAppContext().innerHTML = (0, _SingleType.default)(type);
       });
     }
   });
@@ -260,7 +298,9 @@ function main() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+},{"./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./components/Makes":"js/components/Makes.js","./components/SingleMake":"js/components/SingleMake.js","./components/SingleType":"js/components/SingleType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -288,7 +328,10 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55667" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54640" + '/');
+ new WebSocket(protocol + '://' + hostname + ':' + "55667" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -464,4 +507,3 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
-//# sourceMappingURL=/app.c3f9f951.js.map
