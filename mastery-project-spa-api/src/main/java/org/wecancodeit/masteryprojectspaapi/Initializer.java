@@ -57,14 +57,14 @@ public class Initializer implements CommandLineRunner {
 		
 		
 		// Ford Models
-		Model fordF150 = modelRepo.save(new Model("F-150", "2019", "https://www.performancefordclinton.com/static/dealer-14632/1019612.jpg", "$28,155", ford));
-		Model fordMustang = modelRepo.save(new Model("Mustang", "2019", "https://st.motortrend.com/uploads/sites/10/2018/01/2019-Ford-Mustang-Bullitt-rear-side-view-against-curb.jpg", "$26,395", ford));
-		Model fordFocus = modelRepo.save(new Model("Focus", "2019", "https://res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_large/v1/editorial/2019-Ford-Focus-ST-Line-Wagon-Silver-Press-Image-RB-1001x565p-1.jpg", "$19,920", ford));
-		Model fordExplorer = modelRepo.save(new Model("Explorer", "2020", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-ford-explorer-limited-lead-1547052486.jpg", "$36,675", ford));
-		Model fordTransitConnect = modelRepo.save(new Model("Transit Connect", "2019", "https://cdn.motor1.com/images/mgl/vvjAv/s1/2019-ford-transit-connect-wagon.jpg", "$24,100", ford));
+		Model fordF150 = modelRepo.save(new Model("F-150", "2019", "$28,155", "https://www.performancefordclinton.com/static/dealer-14632/1019612.jpg", ford));
+		Model fordMustang = modelRepo.save(new Model("Mustang", "2019", "$26,395", "https://st.motortrend.com/uploads/sites/10/2018/01/2019-Ford-Mustang-Bullitt-rear-side-view-against-curb.jpg", ford));
+		Model fordFocus = modelRepo.save(new Model("Focus", "2019", "$19,920", "https://res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_large/v1/editorial/2019-Ford-Focus-ST-Line-Wagon-Silver-Press-Image-RB-1001x565p-1.jpg", ford));
+		Model fordExplorer = modelRepo.save(new Model("Explorer", "2020", "$36,675", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-ford-explorer-limited-lead-1547052486.jpg",  ford));
+		Model fordTransitConnect = modelRepo.save(new Model("Transit Connect", "2019", "$24,100", "https://cdn.motor1.com/images/mgl/vvjAv/s1/2019-ford-transit-connect-wagon.jpg",  ford));
 		
 		// Chevy Models
-		Model chevyCorvetteStingrayZR1 = modelRepo.save(new Model("Corvette Stingray ZR1", "2019", "https://st.motortrend.com/uploads/sites/5/2017/11/2019-Chevrolet-Corvette-ZR1-front-side-view-on-stage.jpg", "$119,995", chevy));
+		Model chevyCorvetteStingrayZR1 = modelRepo.save(new Model("Corvette Stingray ZR1", "2019", "$119,995", "https://st.motortrend.com/uploads/sites/5/2017/11/2019-Chevrolet-Corvette-ZR1-front-side-view-on-stage.jpg",  chevy));
 		
 		
 		
