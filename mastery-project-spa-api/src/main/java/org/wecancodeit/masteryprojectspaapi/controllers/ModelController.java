@@ -4,11 +4,16 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.masteryprojectspaapi.models.Make;
 import org.wecancodeit.masteryprojectspaapi.models.Model;
 import org.wecancodeit.masteryprojectspaapi.repositories.MakeRepository;
 import org.wecancodeit.masteryprojectspaapi.repositories.ModelRepository;
@@ -34,6 +39,20 @@ public class ModelController {
 	@GetMapping("/{id}")
 	public Model viewSingleModel(@PathVariable Long id) {
 		return modelRepo.findById(id).get();
+	}
+	
+	@CrossOrigin
+	@PostMapping("/add")
+	public Collection<Model> addModel(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String modelName = json.getString("modelName");
+		String modelYear = json.getString("modelYear");
+		String modelImg = json.getString("modelImg");
+		String modelPrice = json.getString("modelPrice");
+		Make make = makeRepo.findByMakeName(json.getString("make"));
+		modelRepo.save(new Model(modelName, modelYear, modelImg, modelPrice, make));
+		
+		return (Collection<Model>) modelRepo.findAll();
 	}
 
 }

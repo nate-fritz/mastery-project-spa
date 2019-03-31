@@ -33,6 +33,7 @@ function main() {
   viewSingleModel()
   addCountry()
   addMake()
+  addModel()
 }
 
 function viewAllCountries() {
@@ -122,6 +123,25 @@ function addCountry() {
     })
   }
 
+  function addModel() {
+    events.on(getAppContext(), 'click', () => {
+      if(event.target.classList.contains('add-model__submit')) {
+        const modelName = event.target.parentElement.querySelector('.add-model__name').value
+        const modelYear = event.target.parentElement.querySelector('.add-model__year').value
+        const modelPrice = event.target.parentElement.querySelector(".add-model__price").value
+        const modelImg = event.target.parentElement.querySelector('.add-model__img').value
+        const make = event.target.parentElement.querySelector('.add-model__make').value
+  
+        api.postRequest('http://localhost:8080/models/add', {
+            modelName: modelName,
+            modelYear: modelYear,
+            modelPrice: modelPrice,
+            modelImg: modelImg,
+            make: make
+        }, (models) => getAppContext().innerHTML = Models(models))
+      }
+    })
+  }
 
 
 function getHeaderContext() {
