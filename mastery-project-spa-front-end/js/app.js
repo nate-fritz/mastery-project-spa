@@ -34,6 +34,8 @@ function main() {
   addCountry()
   addMake()
   addModel()
+  removeModel()
+  editModel()
 }
 
 function viewAllCountries() {
@@ -130,19 +132,38 @@ function addCountry() {
         const modelYear = event.target.parentElement.querySelector('.add-model__year').value
         const modelPrice = event.target.parentElement.querySelector(".add-model__price").value
         const modelImg = event.target.parentElement.querySelector('.add-model__img').value
-        const make = event.target.parentElement.querySelector('.add-model__make').value
   
-        api.postRequest('http://localhost:8080/models/add', {
+        api.postRequest(`http://localhost:8080/makes/${event.target.id}`, {
             modelName: modelName,
             modelYear: modelYear,
             modelPrice: modelPrice,
             modelImg: modelImg,
-            make: make
-        }, (models) => getAppContext().innerHTML = Models(models))
+        }, (make) => getAppContext().innerHTML = Make(make))
       }
     })
   }
 
+  function editModel() {
+    events.on(getAppContext(), 'click', () => {
+      if(event.target.classList.contains('edit__model--submit')) {
+        const newName = event.target.parentElement.querySelector('.edit__model--content').value
+  
+        api.postRequest(`http://localhost:8080/models/edit/${event.target.id}`, {
+          newName: newName,
+        }, (model) => getAppContext().innerHTML = Model(model))
+      }
+    })
+  }
+  
+  function removeModel() {
+    events.on(getAppContext(), 'click', () => {
+          if(event.target.classList.contains('delete__model')) {
+        api.deleteRequest(`http://localhost:8080/models/delete/${event.target.id}`, make => {
+                  getAppContext().innerHTML = Make(make)
+        })
+      }
+    })
+  }
 
 function getHeaderContext() {
   return document.querySelector("#header")
