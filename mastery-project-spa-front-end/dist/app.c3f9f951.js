@@ -126,7 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Header;
 
 function Header() {
-  return "\n    \n    <div class=\"main-header__title\">\n        <h1>Car Collection</h1>\n    </div>\n    <nav class=\"main-header__nav\">\n        <button class=\"view__all-countries button\">Countries</button>\n        <button class=\"view__all-makes button\">Makes</button>\n        <button class=\"view__all-models button\">Models</button>\n    </nav>\n    ";
+  return "    \n        <div class=\"main-header__title\">\n            <h1>SS</h1>\n        </div>\n        <nav class=\"main-header__nav\">\n            <button class=\"view__all-countries button\">Countries</button>\n            <button class=\"view__all-makes button\">Makes</button>\n            <button class=\"view__all-models button\">Models</button>\n        </nav>    \n    ";
 }
 },{}],"js/components/Makes.js":[function(require,module,exports) {
 "use strict";
@@ -154,8 +154,8 @@ var _Makes = _interopRequireDefault(require("./Makes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Countries(countries) {
-  return "\n      <ul class=\"list\">\n      ".concat(countries.map(function (country) {
-    return "\n          <li class=\"list__item\">\n            <div class=\"item-container\">\n              <h2 class=\"country__name\" id=\"".concat(country.id, "\">").concat(country.name, "</h2>\n              ").concat((0, _Makes.default)(country.makes), "\n          </div>\n        </li>\n      ");
+  return "\n      <ul class=\"contries-list\">\n      ".concat(countries.map(function (country) {
+    return "\n          <li class=\"list__item\">\n            <div class=\"item-container\">\n              <h2 class=\"country__name\" id=\"".concat(country.id, "\">").concat(country.name, "</h2>\n              <div class=\"makes-contry\">\n                ").concat((0, _Makes.default)(country.makes), "\n              </div>\n          </div>\n        </li>\n      ");
   }).join(''), "\n    </ul>\n\n    <section class=\"add-country\">\n        <input type=\"text\" class=\"add-country__name\" placeholder=\"Country Name\">\n        <button class=\"add-country__submit\">Add Country</button>\n    </section>\n    ");
 }
 },{"./Makes":"js/components/Makes.js"}],"js/components/Country.js":[function(require,module,exports) {
@@ -184,7 +184,9 @@ exports.default = Models;
 function Models(models) {
   return "\n  <ul class=\"flex-list\">\n    ".concat(models.map(function (model) {
     return "\n        <li class=\"flex-list__item\">\n          <div class=\"flex-item-container\">\n            <h4 id=\"".concat(model.id, "\" class=\"model__name\"\">").concat(model.modelName, "<h4>\n        </div>\n      </li>\n    ");
-  }).join(''), "\n  </ul>\n \n  ");
+
+  }).join(''), "\n  </ul>\n \n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name add\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year add\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price add\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img add\" placeholder=\"Image URL\">\n        <input type=\"text\" class=\"add-model__make add\" placeholder=\"Model Make\">\n        <button class=\"add-model__submit\">Add Model</button>\n    </section>\n  ");
+
 }
 },{}],"js/components/Make.js":[function(require,module,exports) {
 "use strict";
@@ -497,7 +499,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63862" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58144" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

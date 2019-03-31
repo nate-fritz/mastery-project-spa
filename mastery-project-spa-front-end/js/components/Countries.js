@@ -2,13 +2,15 @@ import Makes from './Makes'
 
 export default function Countries(countries) {
     return `
-      <ul class="list">
+      <ul class="contries-list">
       ${countries.map(country => {
         return `
           <li class="list__item">
             <div class="item-container">
               <h2 class="country__name" id="${country.id}">${country.name}</h2>
-              ${Makes(country.makes)}
+              <div class="makes-contry">
+                ${Makes(country.makes)}
+              </div>
           </div>
         </li>
       `;
