@@ -117,9 +117,359 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/app.js":[function(require,module,exports) {
-document.querySelector('#app').innerHTML = "<h1>Does it work?  Yes it does.</h1>";
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+function Header() {
+  return "    \n        <div class=\"main-header__title\">\n            <h1>SS</h1>\n        </div>\n        <nav class=\"main-header__nav\">\n            <button class=\"view__all-countries button\">Countries</button>\n            <button class=\"view__all-makes button\">Makes</button>\n            <button class=\"view__all-models button\">Models</button>\n        </nav>    \n    ";
+}
+},{}],"js/components/Makes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Makes;
+
+function Makes(makes) {
+  return "\n      <ul class=\"list\">\n      ".concat(makes.map(function (make) {
+    return "\n          <li class=\"list__item\">\n            <div class=\"item-container\">\n            <img id=\"".concat(make.id, "\" class=\"single-make__img\" src=\"").concat(make.makeImg, "\" alt=\"Company Logo\">\n            <h3 class=\"make__name\">").concat(make.makeName, "</h3>\n          </div>\n        </li>\n      ");
+  }).join(''), "\n    </ul>\n    \n    \n    \n    ");
+}
+},{}],"js/components/Countries.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Countries;
+
+var _Makes = _interopRequireDefault(require("./Makes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Countries(countries) {
+  return "\n      <ul class=\"contries-list\">\n      ".concat(countries.map(function (country) {
+    return "\n          <li class=\"list__item\">\n            <div class=\"item-container\">\n              <h2 class=\"country__name\" id=\"".concat(country.id, "\">").concat(country.name, "</h2>\n              <div class=\"makes-contry\">\n                ").concat((0, _Makes.default)(country.makes), "\n              </div>\n          </div>\n        </li>\n      ");
+  }).join(''), "\n    </ul>\n\n    <section class=\"add-country\">\n        <input type=\"text\" class=\"add-country__name\" placeholder=\"Country Name\">\n        <button class=\"add-country__submit\">Add Country</button>\n    </section>\n    ");
+}
+},{"./Makes":"js/components/Makes.js"}],"js/components/Country.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Country;
+
+var _Makes = _interopRequireDefault(require("./Makes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Country(country) {
+  return "\n    <h2 class=\"single-country__name\">".concat(country.name, "</h2>\n    <ul class=\"country__makes\">\n        <li class=\"country__make\">\n            ").concat((0, _Makes.default)(country.makes), "\n        </li>\n    </ul>\n\n<section class=\"add-make\">\n    <input type=\"text\" class=\"add-make__name\" placeholder=\"Make Name\">\n    <input type=\"text\" class=\"add-make__img\" placeholder=\"Image URL for Logo \">\n    <button class=\"add-make__submit\" id=\"").concat(country.id, "\">Add Make</button>\n</section>\n    ");
+}
+},{"./Makes":"js/components/Makes.js"}],"js/components/Models.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Models;
+
+function Models(models) {
+  return "\n  <ul class=\"flex-list flex-list2\">\n    ".concat(models.map(function (model) {
+    return "\n        <li class=\"flex-list__item\">\n          <div class=\"flex-item-container\">\n            <h4 id=\"".concat(model.id, "\" class=\"model__name\"\">").concat(model.modelName, "<h4>\n        </div>\n      </li>\n    ");
+  }).join(''), "\n  </ul>\n\n  ");
+}
+},{}],"js/components/Make.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Make;
+
+var _Models = _interopRequireDefault(require("./Models"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Make(make) {
+  return "\n    <div class=\"single-make__div2\">\n        <img class=\"single-make__img2\" src=\"".concat(make.makeImg, "\" alt=\"Company Logo\">\n        <h2 class=\"single-make__name\">").concat(make.makeName, "</h2>\n    </div>\n    ").concat((0, _Models.default)(make.models), "\n    \n\n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img\" placeholder=\"Image URL\">\n        <button class=\"add-model__submit\" id=\"").concat(make.id, "\">Add Model</button>\n    </section>\n\n    ");
+}
+},{"./Models":"js/components/Models.js"}],"js/components/Model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Model;
+
+function Model(model) {
+  return "\n    <div class=\"list2\">\n    <h2 class=\"single-model__name\">".concat(model.modelName, "</h2>\n    <h4 class=\"single-model__year\">Year: ").concat(model.modelYear, "</h4>\n    <h4 class=\"single-model__price\">MSRP: ").concat(model.modelPrice, "</h4>\n    <img class=\"single-model__img\" src=\"").concat(model.modelImg, "\" alt=\"Picture of this model\">\n    </div>\n\n    <div class=\"list3\">\n        <input type=\"text\" class=\"edit__model--content\" placeholder=\"").concat(model.modelName, "\">\n        <button class=\"edit__model--submit\" id=\"").concat(model.id, "\">Replace Model</button>\n\n        <button class=\"delete-model__submit\" id=\"").concat(model.id, "\">Delete Model</button>\n    </div>\n\n    ");
+}
+},{}],"js/utils/events/event-actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function on(element, eventType, callback) {
+  element.addEventListener(eventType, function (event) {
+    return callback(event);
+  });
+}
+
+var _default = {
+  on: on
+};
+exports.default = _default;
+},{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function getRequest(location, callback) {
+  fetch(location).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
+
+function postRequest(location, requestBody, callback) {
+  fetch(location, {
+    method: "POST",
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
+
+function deleteRequest(location, callback) {
+  fetch(location, {
+    method: "DELETE"
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
+
+var _default = {
+  getRequest: getRequest,
+  postRequest: postRequest,
+  deleteRequest: deleteRequest
+};
+exports.default = _default;
+},{}],"js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _Header = _interopRequireDefault(require("./components/Header"));
+
+var _Countries = _interopRequireDefault(require("./components/Countries"));
+
+var _Country = _interopRequireDefault(require("./components/Country"));
+
+var _Makes = _interopRequireDefault(require("./components/Makes"));
+
+var _Make = _interopRequireDefault(require("./components/Make"));
+
+var _Models = _interopRequireDefault(require("./components/Models"));
+
+var _Model = _interopRequireDefault(require("./components/Model"));
+
+var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
+
+var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+header();
+main();
+
+function header() {
+  getHeaderContext().innerHTML = (0, _Header.default)();
+  viewAllCountries();
+  viewAllMakes();
+  viewAllModels();
+}
+
+function main() {
+  _apiActions.default.getRequest('http://localhost:8080/countries', function (countries) {
+    getAppContext().innerHTML = (0, _Countries.default)(countries);
+  });
+
+  viewSingleCountry();
+  viewSingleMake();
+  viewSingleModel();
+  addCountry();
+  addMake();
+  addModel();
+  removeModel();
+  editModel();
+}
+
+function viewAllCountries() {
+  _eventActions.default.on(getHeaderContext(), 'click', function () {
+    if (event.target.classList.contains('view__all-countries')) {
+      _apiActions.default.getRequest("http://localhost:8080/countries", function (countries) {
+        getAppContext().innerHTML = (0, _Countries.default)(countries);
+      });
+    }
+  });
+}
+
+function viewSingleCountry() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('country__name')) {
+      _apiActions.default.getRequest("http://localhost:8080/countries/".concat(event.target.id), function (country) {
+        getAppContext().innerHTML = (0, _Country.default)(country);
+      });
+    }
+  });
+}
+
+function viewAllMakes() {
+  _eventActions.default.on(getHeaderContext(), 'click', function () {
+    if (event.target.classList.contains('view__all-makes')) {
+      _apiActions.default.getRequest("http://localhost:8080/makes", function (makes) {
+        getAppContext().innerHTML = (0, _Makes.default)(makes);
+      });
+    }
+  });
+}
+
+function viewSingleMake() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('single-make__img')) {
+      _apiActions.default.getRequest("http://localhost:8080/makes/".concat(event.target.id), function (make) {
+        getAppContext().innerHTML = (0, _Make.default)(make);
+      });
+    }
+  });
+}
+
+function viewAllModels() {
+  _eventActions.default.on(getHeaderContext(), 'click', function () {
+    if (event.target.classList.contains('view__all-models')) {
+      _apiActions.default.getRequest("http://localhost:8080/models", function (models) {
+        getAppContext().innerHTML = (0, _Models.default)(models);
+      });
+    }
+  });
+}
+
+function viewSingleModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('model__name')) {
+      _apiActions.default.getRequest("http://localhost:8080/models/".concat(event.target.id), function (model) {
+        getAppContext().innerHTML = (0, _Model.default)(model);
+      });
+    }
+  });
+}
+
+function addCountry() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add-country__submit')) {
+      var name = event.target.parentElement.querySelector('.add-country__name').value;
+
+      _apiActions.default.postRequest('http://localhost:8080/countries/add', {
+        name: name
+      }, function (countries) {
+        return getAppContext().innerHTML = (0, _Countries.default)(countries);
+      });
+    }
+  });
+}
+
+function addMake() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add-make__submit')) {
+      console.log("hi");
+      var makeName = event.target.parentElement.querySelector('.add-make__name').value;
+      var makeImg = event.target.parentElement.querySelector('.add-make__img').value;
+
+      _apiActions.default.postRequest("http://localhost:8080/countries/".concat(event.target.id), {
+        makeName: makeName,
+        makeImg: makeImg
+      }, function (country) {
+        return getAppContext().innerHTML = (0, _Country.default)(country);
+      });
+    }
+  });
+}
+
+function addModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add-model__submit')) {
+      var modelName = event.target.parentElement.querySelector('.add-model__name').value;
+      var modelYear = event.target.parentElement.querySelector('.add-model__year').value;
+      var modelPrice = event.target.parentElement.querySelector(".add-model__price").value;
+      var modelImg = event.target.parentElement.querySelector('.add-model__img').value;
+
+      _apiActions.default.postRequest("http://localhost:8080/makes/".concat(event.target.id), {
+        modelName: modelName,
+        modelYear: modelYear,
+        modelPrice: modelPrice,
+        modelImg: modelImg
+      }, function (make) {
+        return getAppContext().innerHTML = (0, _Make.default)(make);
+      });
+    }
+  });
+}
+
+function editModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('edit__model--submit')) {
+      var newName = event.target.parentElement.querySelector('.edit__model--content').value;
+
+      _apiActions.default.postRequest("http://localhost:8080/models/edit/".concat(event.target.id), {
+        newName: newName
+      }, function (model) {
+        return getAppContext().innerHTML = (0, _Model.default)(model);
+      });
+    }
+  });
+}
+
+function removeModel() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('delete-model__submit')) {
+      _apiActions.default.deleteRequest("http://localhost:8080/models/delete/".concat(event.target.id), function (make) {
+        getAppContext().innerHTML = (0, _Make.default)(make);
+      });
+    }
+  });
+}
+
+function getHeaderContext() {
+  return document.querySelector("#header");
+}
+
+function getAppContext() {
+  return document.querySelector("#app");
+}
+},{"./components/Header":"js/components/Header.js","./components/Countries":"js/components/Countries.js","./components/Country":"js/components/Country.js","./components/Makes":"js/components/Makes.js","./components/Make":"js/components/Make.js","./components/Models":"js/components/Models.js","./components/Model":"js/components/Model.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./utils/api/api-actions":"js/utils/api/api-actions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +497,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57711" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59950" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
