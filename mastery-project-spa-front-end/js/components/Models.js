@@ -1,6 +1,6 @@
 export default function Models(models) {
   return `
-  <ul class="flex-list">
+  <ul class="flex-list flex-list2">
     ${models.map(model => {
       return `
         <li class="flex-list__item">
