@@ -182,7 +182,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Models;
 
 function Models(models) {
-  return "\n  <ul class=\"flex-list\">\n    ".concat(models.map(function (model) {
+  return "\n  <ul class=\"flex-list flex-list2\">\n    ".concat(models.map(function (model) {
     return "\n        <li class=\"flex-list__item\">\n          <div class=\"flex-item-container\">\n            <h4 id=\"".concat(model.id, "\" class=\"model__name\"\">").concat(model.modelName, "<h4>\n        </div>\n      </li>\n    ");
   }).join(''), "\n  </ul>\n\n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name add\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year add\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price add\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img add\" placeholder=\"Image URL\">\n        <input type=\"text\" class=\"add-model__make add\" placeholder=\"Model Make\">\n        <button class=\"add-model__submit\">Add Model</button>\n    </section>\n\n  ");
 }
@@ -199,7 +199,9 @@ var _Models = _interopRequireDefault(require("./Models"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Make(make) {
+
   return "\n    <img class=\"single-make__img\" src=\"".concat(make.makeImg, "\" alt=\"Company Logo\">\n    <h2 class=\"single-make__name\">").concat(make.makeName, "</h2>\n    ").concat((0, _Models.default)(make.models), "\n    \n\n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img\" placeholder=\"Image URL\">\n        <button class=\"add-model__submit\" id=\"").concat(make.id, "\">Add Model</button>\n    </section>\n    ");
+
 }
 },{"./Models":"js/components/Models.js"}],"js/components/Model.js":[function(require,module,exports) {
 "use strict";
@@ -497,7 +499,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "61855" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

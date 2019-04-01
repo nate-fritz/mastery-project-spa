@@ -149,13 +149,73 @@ nav>.button:hover {
 
 /* Models Starts */
 .flex-list {
-    border: 1px solid black;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding-left: 60px; */
+}
+
+.flex-list2 {
+    padding-top: 150px;
+}
+
+.model__name {
+    align-items: center;
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+.model__name:hover {
+    border: 1px solid #f97304;
+    background-color: #ffffff;
+    color: #f97304;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.single-make__div2 {
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.single-make__img2 {
+    border: 1px solid #869aba;
+    bottom: 0;
+    height: 200px;
+    margin-top: 150px;
+    width: 200px;
+}
+
+.single-make__name {
+    align-items: center;
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    padding: 5px;
+    top: 0;
+    width: 200px;
 }
 
 .add-model {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    margin-top: 80px;
     margin-left: 15%;
     margin-right: 15%;
 }
@@ -250,11 +310,13 @@ nav>.button:hover {
 }
 
 .edit__model--submit:hover {
+
     border: 2px solid #f97304;
     background-color: #ffffff;
     color: #f97304;
     cursor: pointer;
 }
+
 
 
 .delete-model__submit {
@@ -270,7 +332,45 @@ nav>.button:hover {
     cursor: pointer;
 }
 
+
 /* Models Stops */
+
+/* Country Strats */
+
+.add-make {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 150px;
+}
+
+.add-make__name {
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+}
+
+.add-make__img {
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+}
+
+.add-make__submit {
+    font-size: 15px;
+    padding: 10px;
+    width: 15%;
+}
+
+.add-make__submit:hover {
+    border: 2px solid #f97304;
+    background-color: #ffffff;
+    color: #f97304;
+    cursor: pointer;
+}
+/* Country Stops */
 
 
 
