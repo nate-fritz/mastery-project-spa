@@ -108,6 +108,7 @@ nav>.button:hover {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-left: 12.5%;
     margin-right: 12.5%;
     margin-bottom: 130px;
@@ -158,7 +159,10 @@ nav>.button:hover {
 
 .flex-list2 {
     padding-top: 150px;
+    padding-bottom: 200px;
 }
+
+
 
 .model__name {
     align-items: center;
@@ -226,10 +230,41 @@ nav>.button:hover {
     width: 17%;
 }
 
+.add-model__name {
+    font-size: 15px;
+    padding: 10px;
+    width: 17%;
+}
+
+.add-model__year {
+    font-size: 15px;
+    padding: 10px;
+    width: 17%;
+}
+
+.add-model__price {
+    font-size: 15px;
+    padding: 10px;
+    width: 17%;
+}
+
+.add-model__img {
+    font-size: 15px;
+    padding: 10px;
+    width: 17%;
+}
+
 .add-model__submit {
     font-size: 15px;
     padding: 10px;
-    width: 30%;
+    width: 15%;
+}
+
+.add-model__submit:hover {
+    border: 2px solid #f97304;
+    background-color: #ffffff;
+    color: #f97304;
+    cursor: pointer;
 }
 
 .list2 {
