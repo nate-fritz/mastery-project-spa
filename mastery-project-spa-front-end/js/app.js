@@ -157,7 +157,7 @@ function addCountry() {
   
   function removeModel() {
     events.on(getAppContext(), 'click', () => {
-          if(event.target.classList.contains('delete__model')) {
+          if(event.target.classList.contains('delete-model__submit')) {
         api.deleteRequest(`http://localhost:8080/models/delete/${event.target.id}`, make => {
                   getAppContext().innerHTML = Make(make)
         })

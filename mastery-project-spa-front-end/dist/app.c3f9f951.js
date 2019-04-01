@@ -184,9 +184,7 @@ exports.default = Models;
 function Models(models) {
   return "\n  <ul class=\"flex-list\">\n    ".concat(models.map(function (model) {
     return "\n        <li class=\"flex-list__item\">\n          <div class=\"flex-item-container\">\n            <h4 id=\"".concat(model.id, "\" class=\"model__name\"\">").concat(model.modelName, "<h4>\n        </div>\n      </li>\n    ");
-
-  }).join(''), "\n  </ul>\n \n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name add\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year add\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price add\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img add\" placeholder=\"Image URL\">\n        <input type=\"text\" class=\"add-model__make add\" placeholder=\"Model Make\">\n        <button class=\"add-model__submit\">Add Model</button>\n    </section>\n  ");
-
+  }).join(''), "\n  </ul>\n\n    <section class=\"add-model\">\n        <input type=\"text\" class=\"add-model__name add\" placeholder=\"Model Name\">\n        <input type=\"text\" class=\"add-model__year add\" placeholder=\"Model Year\">\n        <input type=\"text\" class=\"add-model__price add\" placeholder=\"Model Price\">\n        <input type=\"text\" class=\"add-model__img add\" placeholder=\"Image URL\">\n        <input type=\"text\" class=\"add-model__make add\" placeholder=\"Model Make\">\n        <button class=\"add-model__submit\">Add Model</button>\n    </section>\n\n  ");
 }
 },{}],"js/components/Make.js":[function(require,module,exports) {
 "use strict";
@@ -212,7 +210,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Model;
 
 function Model(model) {
-  return "\n    <h2 class=\"single-model__name\">".concat(model.modelName, "</h2>\n    <h4 class=\"single-model__year\">Year: ").concat(model.modelYear, "</h4>\n    <h4 class=\"single-model__price\">MSRP: ").concat(model.modelPrice, "</h4>\n    <img class=\"single-model__img\" src=\"").concat(model.modelImg, "\" alt=\"Picture of this model\">\n\n    <section class=\"edit__model\">\n        <h3>Edit this Model</h3>\n        <input type=\"text\" class=\"edit__model--content\" placeholder=\"").concat(model.modelName, "\">\n        <button class=\"edit__model--submit\" id=\"").concat(model.id, "\">Replace Model</button>\n    </section> \n\n    <section class=\"delete__model\">\n        <button class=\"delete__model\" id=\"").concat(model.id, "\">Delete Model</button>\n    </section>\n\n    ");
+  return "\n    <div class=\"list2\">\n    <h2 class=\"single-model__name\">".concat(model.modelName, "</h2>\n    <h4 class=\"single-model__year\">Year: ").concat(model.modelYear, "</h4>\n    <h4 class=\"single-model__price\">MSRP: ").concat(model.modelPrice, "</h4>\n    <img class=\"single-model__img\" src=\"").concat(model.modelImg, "\" alt=\"Picture of this model\">\n    </div>\n\n    <div class=\"list3\">\n        <input type=\"text\" class=\"edit__model--content\" placeholder=\"").concat(model.modelName, "\">\n        <button class=\"edit__model--submit\" id=\"").concat(model.id, "\">Replace Model</button>\n\n        <button class=\"delete-model__submit\" id=\"").concat(model.id, "\">Delete Model</button>\n    </div>\n\n    ");
 }
 },{}],"js/utils/events/event-actions.js":[function(require,module,exports) {
 "use strict";
@@ -456,7 +454,7 @@ function editModel() {
 
 function removeModel() {
   _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('delete__model')) {
+    if (event.target.classList.contains('delete-model__submit')) {
       _apiActions.default.deleteRequest("http://localhost:8080/models/delete/".concat(event.target.id), function (make) {
         getAppContext().innerHTML = (0, _Make.default)(make);
       });
@@ -499,9 +497,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58144" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61855" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
