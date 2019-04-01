@@ -8,4 +8,5 @@ import org.wecancodeit.masteryprojectspaapi.models.Make;
 public interface MakeRepository extends CrudRepository<Make, Long> {
 	
 	Make findByMakeName(String string);
+
 }

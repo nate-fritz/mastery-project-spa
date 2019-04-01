@@ -1,3 +1,5 @@
+
+
 export default function Models(models) {
   return `
   <ul class="flex-list flex-list2">
@@ -11,7 +13,7 @@ export default function Models(models) {
     `;
   }).join('')}
   </ul>
- 
+
     <section class="add-model">
         <input type="text" class="add-model__name add" placeholder="Model Name">
         <input type="text" class="add-model__year add" placeholder="Model Year">
@@ -20,5 +22,6 @@ export default function Models(models) {
         <input type="text" class="add-model__make add" placeholder="Model Make">
         <button class="add-model__submit">Add Model</button>
     </section>
+
   `
   }

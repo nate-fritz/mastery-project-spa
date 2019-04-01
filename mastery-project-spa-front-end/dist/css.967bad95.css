@@ -229,15 +229,111 @@ nav>.button:hover {
 .add-model__submit {
     font-size: 15px;
     padding: 10px;
-    width: 10%;
+    width: 30%;
 }
 
-.add-model__submit:hover {
+
+.list2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 150px;
+}
+
+
+.single-model__name { 
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    font-size: 35px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 40%;
+}
+
+.single-model__year { 
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    font-size: 25px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 40%;
+}
+
+.single-model__price { 
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    font-size: 25px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 40%;
+} 
+
+.single-model__img { 
+    background-color: #f97304;
+    box-shadow: 0px 3px  7px #869aba;
+    color: #ffffff;
+    font-size: 25px;
+    margin: 5px;
+    text-align: center;
+    max-width: 40%;
+} 
+
+.list3 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 130px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 50px;
+
+}
+
+
+.edit__model--content {
+    font-size: 15px;
+    padding: 10px;
+    width: 30%;
+}
+
+.edit__model--submit {
+    font-size: 15px;
+    padding: 10px;
+    width: 30%;
+}
+
+.edit__model--submit:hover {
+
     border: 2px solid #f97304;
     background-color: #ffffff;
     color: #f97304;
     cursor: pointer;
 }
+
+
+
+.delete-model__submit {
+    font-size: 15px;
+    padding: 10px;
+    width: 30%;
+}
+
+.delete-model__submit:hover {
+    border: 2px solid #f97304;
+    background-color: #ffffff;
+    color: #f97304;
+    cursor: pointer;
+}
+
+
 /* Models Stops */
 
 /* Country Strats */
